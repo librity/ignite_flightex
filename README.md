@@ -1,21 +1,70 @@
 # Flightex
 
-**TODO: Add description**
+## Table of Contents
 
-## Installation
+- [About](#about)
+- [Bash Commands](#bash_commands)
+- [Elixir Commands](#elixir_commands)
+- [Libs](#libs)
+- [Docs](#docs)
+- [Resources](#resources)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `flightex` to your list of dependencies in `mix.exs`:
+## About <a name = "about"></a>
 
-```elixir
-def deps do
-  [
-    {:flightex, "~> 0.1.0"}
-  ]
-end
+A demo Elixir program that uses `Structs` as `Data Transfer Objects`,
+and `Agents` to persist state between precesses.
+
+Challenge 5 of Ignite Elixir, a bootcamp by Rocket Seat.
+
+## Bash Commands <a name = "bash_commands"></a>
+
+```bash
+# Create new Elixir project
+$ mix new project_name
+# Intall dependencies
+$ mix deps.get
+# Generate linter config
+$ mix credo gen.config
+# Run linter
+$ mix credo --strict
+# Start your project as an Interactive Elixir session
+$ iex -S mix
+# Run console on test environment
+$ MIX_ENV=test iex -S mix
+# Run tests
+$ mix test
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/flightex](https://hexdocs.pm/flightex).
+## Elixir Commands <a name = "elixir_commands"></a>
 
+Expected behavior:
+
+```elixir
+> Flightex.create_user(params)
+{:ok, user_id}
+
+> Flightex.create_booking(user_id, params)
+{:ok, booking_id}
+
+> Flightex.create_booking(invalid_user_id, params)
+{:error, "User not found"}
+
+> Flightex.get_booking(booking_id)
+{:ok, %Booking{...}}
+
+> Flightex.get_booking(invalid_booking_id)
+{:error, "Flight Booking not found"}
+```
+
+## Libs <a name = "libs"></a>
+
+- https://github.com/rrrene/credo
+- https://github.com/zyro/elixir-uuid
+
+## Docs <a name = "docs"></a>
+
+- https://elixir-lang.org/crash-course.html
+
+## Resources <a name = "resources"></a>
+
+- https://marketplace.visualstudio.com/items?itemName=pantajoe.vscode-elixir-credo
