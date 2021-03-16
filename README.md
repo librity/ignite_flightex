@@ -29,8 +29,6 @@ $ mix credo gen.config
 $ mix credo --strict
 # Start your project as an Interactive Elixir session
 $ iex -S mix
-# Run console on test environment
-$ MIX_ENV=test iex -S mix
 # Run tests
 $ mix test
 ```
@@ -64,6 +62,7 @@ Expected behavior:
 ## Docs <a name = "docs"></a>
 
 - https://elixir-lang.org/crash-course.html
+- https://hexdocs.pm/elixir/NaiveDateTime.html
 
 ## Resources <a name = "resources"></a>
 
