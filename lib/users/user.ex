@@ -8,12 +8,7 @@ defmodule Flightex.Users.User do
       when is_bitstring(name) and
              is_bitstring(email) and
              is_bitstring(cpf) do
-    %__MODULE__{
-      id: UUID.uuid4(),
-      name: name,
-      email: email,
-      cpf: cpf
-    }
+    {:ok, %__MODULE__{id: UUID.uuid4(), name: name, email: email, cpf: cpf}}
   end
 
   def build(_name, _email, _cpf), do: {:error, "Invalid params."}

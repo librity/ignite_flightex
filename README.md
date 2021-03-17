@@ -54,16 +54,32 @@ Expected behavior:
 {:error, "Flight Booking not found"}
 ```
 
+Naive Date Time (Date-time without timezone):
+
+```elixir
+> NaiveDateTime.from_iso8601("2015-01-23 23:50:07")
+{:ok, ~N[2015-01-23 23:50:07]}
+> NaiveDateTime.from_iso8601!("2015-01-23 23:50:07")
+~N[2015-01-23 23:50:07]
+```
+
 ## Libs <a name = "libs"></a>
 
 - https://github.com/rrrene/credo
 - https://github.com/zyro/elixir-uuid
+- https://github.com/bitwalker/timex
 
 ## Docs <a name = "docs"></a>
 
 - https://elixir-lang.org/crash-course.html
 - https://hexdocs.pm/elixir/NaiveDateTime.html
+- https://hexdocs.pm/elixir/NaiveDateTime.html#from_iso8601/2
+- https://hexdocs.pm/elixir/Date.html#from_iso8601/2
+- https://hexdocs.pm/elixir/Time.html#t:t/0
+- https://hexdocs.pm/timex/getting-started.html
 
 ## Resources <a name = "resources"></a>
 
 - https://marketplace.visualstudio.com/items?itemName=pantajoe.vscode-elixir-credo
+- https://stackoverflow.com/questions/51600416/elixir-add-timezone-data-to-naive-date-time
+- https://stackoverflow.com/questions/40444970/how-to-convert-a-string-into-an-ecto-datetime-in-elixir
