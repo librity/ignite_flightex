@@ -69,20 +69,52 @@ Naive Date Time (Date-time without timezone):
 {{2000, 2, 29}, {23, 0, 7}}
 ```
 
+UUID4 validation:
+
+```elixir
+> {:ok, [{:uuid, valid_uuid} | _tails]} = UUID.uuid4() |> UUID.info()
+{:ok,
+ [
+   uuid: "52224694-3cee-48f9-938c-ab99830c2881",
+   binary: <<82, 34, 70, 148, 60, 238, 72, 249, 147, 140, 171, 153, 131, 12, 40,
+     129>>,
+   type: :default,
+   version: 4,
+   variant: :rfc4122
+ ]}
+> valid_uuid
+"52224694-3cee-48f9-938c-ab99830c2881"
+> {:error, message} = "SOFUNKY" |> UUID.info()
+{:error, "Invalid argument; Not a valid UUID: sofunky"}
+```
+
 User Agent and Creator:
 
 ```elixir
 > Flightex.start_agents()
-{:ok, #PID<0.224.0>}
 > user_params = Flightex.Factory.build(:user)
-> Flightex.create_user(user_params)
-{:ok, "6004ed71-219e-4203-934f-e780e0b77b3f"}
+> {:ok, user_id} = Flightex.create_user(user_params)
+{:ok, "9a68c5da-2f51-4e5e-a2b8-21b7dee48105"}
+> Flightex.update_user(user_id, user_params)
+{:ok, "9a68c5da-2f51-4e5e-a2b8-21b7dee48105"}
+> Flightex.update_user("SOFUNKY", user_params)
+{:error, "Invalid id."}
+> Flightex.get_user(user_id)
+{:ok,
+ %Flightex.Users.User{
+   cpf: "1234567",
+   email: "iggy@murderbusiness.org",
+   id: "9a68c5da-2f51-4e5e-a2b8-21b7dee48105",
+   name: "Iggy Azalea"
+ }}
+> Flightex.get_user("SOFUNKY")
+{:error, "User not found."}
 > Flightex.get_users
 %{
-  "6004ed71-219e-4203-934f-e780e0b77b3f" => %Flightex.Users.User{
+  "9a68c5da-2f51-4e5e-a2b8-21b7dee48105" => %Flightex.Users.User{
     cpf: "1234567",
     email: "iggy@murderbusiness.org",
-    id: "6004ed71-219e-4203-934f-e780e0b77b3f",
+    id: "9a68c5da-2f51-4e5e-a2b8-21b7dee48105",
     name: "Iggy Azalea"
   }
 }
