@@ -72,10 +72,20 @@ Naive Date Time (Date-time without timezone):
 User Agent and Creator:
 
 ```elixir
-Flightex.start_agents()
-user_params = Flightex.Factory.build(:user)
-Flightex.create_or_update_user(user_params)
-Flightex.get_users
+> Flightex.start_agents()
+{:ok, #PID<0.224.0>}
+> user_params = Flightex.Factory.build(:user)
+> Flightex.create_user(user_params)
+{:ok, "6004ed71-219e-4203-934f-e780e0b77b3f"}
+> Flightex.get_users
+%{
+  "6004ed71-219e-4203-934f-e780e0b77b3f" => %Flightex.Users.User{
+    cpf: "1234567",
+    email: "iggy@murderbusiness.org",
+    id: "6004ed71-219e-4203-934f-e780e0b77b3f",
+    name: "Iggy Azalea"
+  }
+}
 ```
 
 Booking Agent and Creator:
