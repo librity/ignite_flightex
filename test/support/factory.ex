@@ -35,5 +35,6 @@ defmodule Flightex.Factory do
     build(:booking)
     |> Map.from_struct()
     |> Map.delete(:id)
+    |> Map.delete(:user_id)
   end
 end

@@ -12,8 +12,8 @@ defmodule Flightex.Users.Agent do
   def get(id), do: Agent.get(__MODULE__, &get_user(&1, id))
   def get_all, do: Agent.get(__MODULE__, & &1)
 
-  defp insert_user(previous_state, %User{id: uuid} = user),
-    do: Map.put(previous_state, uuid, user)
+  defp insert_user(previous_state, %User{id: id} = user),
+    do: Map.put(previous_state, id, user)
 
   defp get_user(previous_state, id) do
     case Map.get(previous_state, id) do

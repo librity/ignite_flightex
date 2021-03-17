@@ -3,16 +3,17 @@ defmodule Flightex.Users.Update do
   alias Flightex.Users.User
 
   def call(id, %{name: name, email: email, cpf: cpf}) do
-    name
-    |> User.build(email, cpf, id)
-    |> save_user()
+    with {:ok, _old_user} <- UserAgent.get(id),
+         {:ok, updated_user} <- User.build(name, email, cpf, id) do
+      save_user(updated_user)
+    else
+      error -> error
+    end
   end
 
-  defp save_user({:ok, %User{id: user_id} = user}) do
+  defp save_user(%User{id: user_id} = user) do
     UserAgent.save(user)
 
     {:ok, user_id}
   end
-
-  defp save_user({:error, _reason} = error), do: error
 end

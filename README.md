@@ -93,12 +93,15 @@ User Agent and Creator:
 ```elixir
 > Flightex.start_agents()
 > user_params = Flightex.Factory.build(:user)
+
 > {:ok, user_id} = Flightex.create_user(user_params)
 {:ok, "9a68c5da-2f51-4e5e-a2b8-21b7dee48105"}
+
 > Flightex.update_user(user_id, user_params)
 {:ok, "9a68c5da-2f51-4e5e-a2b8-21b7dee48105"}
 > Flightex.update_user("SOFUNKY", user_params)
-{:error, "Invalid id."}
+{:error, "User not found."}
+
 > Flightex.get_user(user_id)
 {:ok,
  %Flightex.Users.User{
@@ -109,6 +112,7 @@ User Agent and Creator:
  }}
 > Flightex.get_user("SOFUNKY")
 {:error, "User not found."}
+
 > Flightex.get_users
 %{
   "9a68c5da-2f51-4e5e-a2b8-21b7dee48105" => %Flightex.Users.User{
@@ -123,14 +127,41 @@ User Agent and Creator:
 Booking Agent and Creator:
 
 ```elixir
-Flightex.start_agents()
-booking_params = Flightex.Factory.build(:booking)
-{:ok, booking_id} = Flightex.create_booking(booking_params)
-Flightex.update_booking(booking_id, booking_params)
-Flightex.update_booking("SOFUNKY", booking_params)
-Flightex.get_booking(booking_id)
-Flightex.get_booking("SOFUNKY")
-Flightex.get_bookings
+> Flightex.start_agents()
+> booking_params = Flightex.Factory.build(:booking_params)
+> user_params = Flightex.Factory.build(:user_params)
+> {:ok, user_id} = Flightex.create_user(user_params)
+{:ok, "02cf4d12-38bc-46fe-9785-af179fd7053f"}
+
+> {:ok, booking_id} = Flightex.create_booking(user_id, booking_params)
+{:ok, "5c16bda3-d637-4790-b073-7fc00d9b3fea"}
+
+> Flightex.update_booking(booking_id, user_id, booking_params)
+{:ok, "5c16bda3-d637-4790-b073-7fc00d9b3fea"}
+> Flightex.update_booking("SOFUNKY", user_id, booking_params)
+{:error, "Booking not found."}
+
+> Flightex.get_booking(booking_id)
+{:ok,
+ %Flightex.Bookings.Booking{
+   departure: ~N[2014-03-04 23:59:59],
+   going_to: "Tokyo",
+   id: "5c16bda3-d637-4790-b073-7fc00d9b3fea",
+   leaving_from: "LAX",
+   user_id: "02cf4d12-38bc-46fe-9785-af179fd7053f"
+ }}
+> Flightex.get_booking("SOFUNKY")
+{:error, "Booking not found."}
+)> Flightex.get_bookings
+%{
+  "5c16bda3-d637-4790-b073-7fc00d9b3fea" => %Flightex.Bookings.Booking{
+    departure: ~N[2014-03-04 23:59:59],
+    going_to: "Tokyo",
+    id: "5c16bda3-d637-4790-b073-7fc00d9b3fea",
+    leaving_from: "LAX",
+    user_id: "02cf4d12-38bc-46fe-9785-af179fd7053f"
+  }
+}
 ```
 
 ## Libs <a name = "libs"></a>
