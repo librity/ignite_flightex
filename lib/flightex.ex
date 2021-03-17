@@ -1,7 +1,7 @@
 defmodule Flightex do
   alias Flightex.Users.Agent, as: UserAgent
 
-  def initialize_agents do
+  def start_agents do
     UserAgent.start_link()
   end
 

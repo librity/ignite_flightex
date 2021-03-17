@@ -72,7 +72,10 @@ Naive Date Time (Date-time without timezone):
 User Agent and Creator:
 
 ```elixir
-
+Flightex.start_agents()
+user_params = Flightex.Factory.build(:user)
+Flightex.create_or_update_user(user_params)
+Flightex.get_users
 ```
 
 Booking Agent and Creator:
@@ -86,15 +89,16 @@ Booking Agent and Creator:
 - https://github.com/rrrene/credo
 - https://github.com/zyro/elixir-uuid
 - https://github.com/bitwalker/timex
+- https://github.com/thoughtbot/ex_machina
 
 ## Docs <a name = "docs"></a>
 
 - https://elixir-lang.org/crash-course.html
-- https://hexdocs.pm/elixir/NaiveDateTime.html
 - https://hexdocs.pm/elixir/NaiveDateTime.html#from_iso8601/2
 - https://hexdocs.pm/elixir/Date.html#from_iso8601/2
 - https://hexdocs.pm/elixir/Time.html#t:t/0
 - https://hexdocs.pm/timex/getting-started.html
+- https://hexdocs.pm/ex_machina/readme.html
 
 ## Resources <a name = "resources"></a>
 
