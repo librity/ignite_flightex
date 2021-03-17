@@ -1,18 +1,10 @@
 defmodule Flightex do
-  @moduledoc """
-  Documentation for `Flightex`.
-  """
+  alias Flightex.Users.Agent, as: UserAgent
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Flightex.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def initialize_agents do
+    UserAgent.start_link()
   end
+
+  defdelegate get_user(params), to: UserAgent, as: :get
+  defdelegate get_users, to: UserAgent, as: :get_all
 end
