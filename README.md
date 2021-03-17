@@ -123,7 +123,14 @@ User Agent and Creator:
 Booking Agent and Creator:
 
 ```elixir
-
+Flightex.start_agents()
+booking_params = Flightex.Factory.build(:booking)
+{:ok, booking_id} = Flightex.create_booking(booking_params)
+Flightex.update_booking(booking_id, booking_params)
+Flightex.update_booking("SOFUNKY", booking_params)
+Flightex.get_booking(booking_id)
+Flightex.get_booking("SOFUNKY")
+Flightex.get_bookings
 ```
 
 ## Libs <a name = "libs"></a>
